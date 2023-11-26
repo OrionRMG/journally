@@ -12,7 +12,9 @@ function NewEntryForm({ isLoading, goalsList }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const date = new Date();
+    const dateMillis = new Date(Date.now());
+    const id = Date.parse(dateMillis);
+    const date = dateMillis.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"});
 
     let goals = [];
 

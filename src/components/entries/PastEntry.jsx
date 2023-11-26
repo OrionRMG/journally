@@ -1,10 +1,10 @@
-function PastEntry({ date }) {
+function PastEntry({ data }) {
   return (
     <div className="new-entry-form">
       <h2>How was your day today?</h2>
 
       <GoalsProgress
-        goalsList={goalsList}
+        goalsList={data}
         goalsProgress={goalsProgress}
         setGoalsProgress={setGoalsProgress}
         disabled={true}

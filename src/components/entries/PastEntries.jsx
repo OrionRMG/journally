@@ -1,8 +1,12 @@
 import { Oval } from "react-loader-spinner";
-import { entries } from "../data";
-import ListItem from "./form/ListItem";
+// import { entries } from "../../data";
+import ListItem from "../form/ListItem";
 
-function PastEntries({ isLoading, toggle }) {
+function PastEntries({ isLoading, entries, toggle, setCurrEntryId }) {
+  function handleClick(id) {
+    setCurrEntryId(id);
+  }
+
   return (
     <div className="entries-box">
       <div className="row">
@@ -28,7 +32,7 @@ function PastEntries({ isLoading, toggle }) {
         <div className="entries-list">
           {entries.map((entry) => {
             return (
-              <ListItem type="blue" key={entry.id}>
+              <ListItem type="blue" id={entry.id} key={entry.id} onClick={() => handleClick(entry.id)}>
                 {entry.date}
               </ListItem>
             );

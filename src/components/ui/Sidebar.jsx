@@ -1,11 +1,11 @@
 import Box from "./Box";
 import Goals from "../goals/Goals";
-import PastEntries from "../PastEntries";
+import PastEntries from "../entries/PastEntries";
 import { useState } from "react";
 import CollapsedBox from "./CollapsedBox";
 import { Oval } from "react-loader-spinner";
 
-function Sidebar({ isLoading, goals, setGoals, entries, setEntries }) {
+function Sidebar({ isLoading, goals, setGoals, entries, setEntries, setCurrEntryId }) {
   const [goalsCollapsed, setGoalsCollapsed] = useState(false);
   const [entriesCollapsed, setEntriesCollapsed] = useState(false);
 
@@ -48,14 +48,13 @@ function Sidebar({ isLoading, goals, setGoals, entries, setEntries }) {
             <PastEntries
               isLoading={isLoading}
               entries={entries}
-              setEntries={setEntries}
               toggle={toggleEntries}
             />
           ) : (
             <PastEntries
               entries={entries}
-              setEntries={setEntries}
               toggle={toggleEntries}
+              setCurrEntryId={setCurrEntryId}
             />
           )}
         </Box>

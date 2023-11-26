@@ -5,7 +5,7 @@ import NewEntryForm from "./form/NewEntryForm";
 import Sidebar from "./ui/Sidebar";
 import { useState } from "react";
 import { useUserData } from "./hooks/useUserData";
-import PastEntry from "./PastEntry";
+import PastEntry from "./entries/PastEntry";
 
 function Body() {
   const { isLoading, userData } = useUserData();
@@ -15,7 +15,11 @@ function Body() {
   const [goals, setGoals] = useState([]);
   const [entries, setEntries] = useState([]);
 
-  const [currEntryId, setCurrEntryId] = useState("");
+  const [currEntryId, setCurrEntryId] = useState(null);
+  let entryData;
+  if (currEntryId) {
+    entryData =  userData.entries.find(entry => entry.id === currEntryId);
+  }
 
   const [userData1, setUserData] = useState({
     username: "",
@@ -46,9 +50,8 @@ function Body() {
       ) : (
         <Sidebar
           goals={userData.goals}
-          setGoals={setGoals}
           entries={userData.entries}
-          setEntries={setEntries}
+          setCurrEntryId={setCurrEntryId}
         />
       )}
     </div>
