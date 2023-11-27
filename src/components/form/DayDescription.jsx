@@ -1,7 +1,7 @@
-function DayDescription({ value, onChange }) {
+function DayDescription({ value, onChange, disabled = false }) {
   return (
     <div className="form-item">
-      <h3>What happened today?</h3>
+      <h3>Thoughts / Desciption</h3>
       <textarea
         id="description"
         name="description"
@@ -10,6 +10,7 @@ function DayDescription({ value, onChange }) {
         placeholder="Write something..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
       />
     </div>
   );

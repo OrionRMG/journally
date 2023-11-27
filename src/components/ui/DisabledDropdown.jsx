@@ -1,11 +1,10 @@
-function DisabledDropdown({ value, options, color, icon, size }) {
+function DisabledDropdown({ value, options, colors, icon, size }) {
   return (
     <DropdownValue
-      color={color}
+      color={colors[value]}
       iconName={icon ? toSnakeCase(options[value]) : ""}
       text={options[value]}
       size={size}
-      setShowDropdown={setShowDropdown}
     />
   );
 }

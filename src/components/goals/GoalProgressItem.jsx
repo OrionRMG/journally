@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "../ui/Dropdown";
 
-function GoalProgressItem({ goal, setGoalsProgress, disabled }) {
+function GoalProgressItem({ goal, setGoalsProgress }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ function GoalProgressItem({ goal, setGoalsProgress, disabled }) {
         options={["None", "A little", "A lot"]}
         colors={["gray", "green", "blue"]}
         size="sm"
-        disabled={disabled}
       />
     </li>
   );

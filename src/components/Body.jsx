@@ -1,58 +1,34 @@
-import Box from "./ui/Box";
-import Goals from "./goals/Goals";
-import Header from "./ui/Header";
-import NewEntryForm from "./form/NewEntryForm";
-import Sidebar from "./ui/Sidebar";
 import { useState } from "react";
-import { useUserData } from "./hooks/useUserData";
+
+import { useUserContext } from "../UserContext";
+
+import Box from "./ui/Box";
+import Header from "./ui/Header";
+import Sidebar from "./ui/Sidebar";
+import NewEntryForm from "./form/NewEntryForm";
 import PastEntry from "./entries/PastEntry";
 
 function Body() {
-  const { isLoading, userData } = useUserData();
-
-  console.log(userData);
-
-  const [goals, setGoals] = useState([]);
-  const [entries, setEntries] = useState([]);
+  const { isLoading } = useUserContext();
 
   const [currEntryId, setCurrEntryId] = useState(null);
-  let entryData;
-  if (currEntryId) {
-    entryData =  userData.entries.find(entry => entry.id === currEntryId);
-  }
-
-  const [userData1, setUserData] = useState({
-    username: "",
-    goals: {},
-    streak: 0,
-    score: 0,
-    entries: [],
-  });
 
   return (
     <div className="app-body">
-      <Header username={isLoading ? "" : userData.username} />
+      <Header />
       <Box>
         {currEntryId ? (
-          <PastEntry data={entryData} />
+          <PastEntry id={currEntryId} setCurrEntryId={setCurrEntryId} />
         ) : isLoading ? (
           <NewEntryForm isLoading={isLoading} />
         ) : (
-          <NewEntryForm goalsList={userData.goals} />
+          <NewEntryForm />
         )}
       </Box>
       {isLoading ? (
-        <Sidebar
-          isLoading={isLoading}
-          setGoals={setGoals}
-          setEntries={setEntries}
-        />
+        <Sidebar isLoading={isLoading} />
       ) : (
-        <Sidebar
-          goals={userData.goals}
-          entries={userData.entries}
-          setCurrEntryId={setCurrEntryId}
-        />
+        <Sidebar setCurrEntryId={setCurrEntryId} />
       )}
     </div>
   );

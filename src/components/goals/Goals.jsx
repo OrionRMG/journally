@@ -1,17 +1,23 @@
-import { useState } from "react";
-import { currentGoals } from "../../data";
+import { useEffect, useState } from "react";
 import Goal from "./Goal";
 import ListItem from "../form/ListItem";
 import { Oval } from "react-loader-spinner";
+import { useUserContext } from "../../UserContext";
+import { updateUser } from "../../services/apiUser";
+import { useMutation } from "@tanstack/react-query";
 
-function Goals({ isLoading, goals, setGoals, toggle }) {
+function Goals({ toggle }) {
   const [isAddingGoal, setIsAddingGoal] = useState(false);
   const [goalText, setGoalText] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const { isLoading, userData, refetch } = useUserContext();
 
-    setGoals((goals) => [...goals, e.target[0].value]);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const newGoal = e.target[0].value;
+
+    await updateUser({ goals: [...userData.goals, newGoal] }, 1);
+    refetch();
     setGoalText("");
   }
 
@@ -19,6 +25,13 @@ function Goals({ isLoading, goals, setGoals, toggle }) {
     if (goalText) return;
 
     setIsAddingGoal(false);
+  }
+
+  async function deleteGoal(goalName) {
+    const newGoalsList = userData.goals.filter((goal) => goal !== goalName);
+
+    await updateUser({ goals: newGoalsList }, 1);
+    if (!isLoading) refetch();
   }
 
   return (
@@ -45,9 +58,14 @@ function Goals({ isLoading, goals, setGoals, toggle }) {
         />
       ) : (
         <div className="goals-list">
-          {goals.map((goal) => {
+          {userData.goals.map((goal) => {
             return (
-              <Goal type="green" key={goal}>
+              <Goal
+                type="green"
+                key={goal}
+                deleteGoal={deleteGoal}
+                goalText={goal}
+              >
                 {goal}
               </Goal>
             );
@@ -61,10 +79,14 @@ function Goals({ isLoading, goals, setGoals, toggle }) {
                 setIsAddingGoal(true);
               }}
             >
-              <span style={{ display: "flex", alignItems: "center" }}>
-                <img src="images/add.svg" />
-              </span>
-              Add goal
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img src="images/add.svg" />
+                </span>
+                Add goal
+              </div>
             </ListItem>
           ) : (
             <form className="add-goal-box" onSubmit={handleSubmit}>

@@ -3,18 +3,26 @@ import DayDescription from "./DayDescription";
 import GoalsProgress from "./GoalsProgress";
 import SatisfactionLevel from "./SatisfactionLevel";
 import { Oval } from "react-loader-spinner";
+import { updateUser } from "../../services/apiUser";
+import { useUserContext } from "../../UserContext";
 
-function NewEntryForm({ isLoading, goalsList }) {
+function NewEntryForm({ isLoading }) {
   const [satisfactionLevel, setSatisfactionLevel] = useState(2);
   const [goalsProgress, setGoalsProgress] = useState([]);
   const [description, setDescription] = useState("");
 
-  function handleSubmit(e) {
+  const { userData, refetch } = useUserContext();
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const dateMillis = new Date(Date.now());
     const id = Date.parse(dateMillis);
-    const date = dateMillis.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"});
+    const date = dateMillis.toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
 
     let goals = [];
 
@@ -28,14 +36,19 @@ function NewEntryForm({ isLoading, goalsList }) {
     });
 
     const formData = {
+      id,
       goals,
-      satisfactionLevel,
+      satisfaction: satisfactionLevel,
       description,
       date,
     };
 
-    console.log(formData);
-    // TODO DB PUSH
+    await submitEntry(formData);
+    refetch();
+  }
+
+  async function submitEntry(formData) {
+    await updateUser({ entries: [...userData.entries, formData] }, 1);
   }
 
   return (
@@ -56,11 +69,7 @@ function NewEntryForm({ isLoading, goalsList }) {
           strokeWidthSecondary={2}
         />
       ) : (
-        <GoalsProgress
-          goalsList={goalsList}
-          goalsProgress={goalsProgress}
-          setGoalsProgress={setGoalsProgress}
-        />
+        <GoalsProgress setGoalsProgress={setGoalsProgress} />
       )}
 
       <input

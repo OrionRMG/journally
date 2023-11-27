@@ -1,8 +1,10 @@
 import { Oval } from "react-loader-spinner";
-// import { entries } from "../../data";
 import ListItem from "../form/ListItem";
+import { useUserContext } from "../../UserContext";
 
-function PastEntries({ isLoading, entries, toggle, setCurrEntryId }) {
+function PastEntries({ toggle, setCurrEntryId }) {
+  const { isLoading, userData } = useUserContext();
+
   function handleClick(id) {
     setCurrEntryId(id);
   }
@@ -30,13 +32,22 @@ function PastEntries({ isLoading, entries, toggle, setCurrEntryId }) {
         />
       ) : (
         <div className="entries-list">
-          {entries.map((entry) => {
-            return (
-              <ListItem type="blue" id={entry.id} key={entry.id} onClick={() => handleClick(entry.id)}>
-                {entry.date}
-              </ListItem>
-            );
-          })}
+          {userData.entries
+            .slice()
+            .reverse()
+            .map((entry) => {
+              return (
+                <ListItem
+                  type="blue"
+                  id={entry.id}
+                  key={entry.id}
+                  isEntry={true}
+                  onClick={() => handleClick(entry.id)}
+                >
+                  {entry.date}
+                </ListItem>
+              );
+            })}
         </div>
       )}
     </div>

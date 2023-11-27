@@ -1,7 +1,11 @@
+import { useUserContext } from "../UserContext";
+
 function User() {
+  const { isLoading, userData } = useUserContext();
+
   return (
     <div>
-      <span>oriongl </span>
+      <span>{isLoading ? "" : userData.username} </span>
       <span>Log out</span>
     </div>
   );

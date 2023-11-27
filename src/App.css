@@ -4,6 +4,7 @@
   --main-bg-color: #f9f7f2;
   --blue-dark: #3f8faa;
   --blue-light: #d0f0fb;
+  --blue-hover: #bbe1ee;
   --gray-dark: #383838;
   --gray-light: #ececec;
   --green-dark: #3c833b;
@@ -179,6 +180,7 @@ option {
 .dropdown-item-label {
   display: flex;
   gap: 8px;
+  line-height: 1.3rem;
 }
 
 .red {
@@ -204,6 +206,12 @@ option {
 .blue {
   background-color: var(--blue-light);
   color: var(--blue-dark);
+}
+
+.blue:hover {
+  background-color: var(--blue-hover);
+  border: 1px solid var(--blue-dark);
+  margin: -1px;
 }
 
 .description-box {
@@ -277,12 +285,21 @@ button {
   align-self: stretch;
 }
 
+.entry {
+  cursor: pointer;
+}
+
 .list-item {
   display: flex;
   padding: 12px 16px;
+  line-height: 1.3rem;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   align-self: stretch;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 textarea:focus {

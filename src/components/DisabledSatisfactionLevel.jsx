@@ -1,12 +1,11 @@
-import Dropdown from "../ui/Dropdown";
+import DisabledDropdown from "./ui/DisabledDropdown";
 
-function SatisfactionLevel({ satisfactionLevel, setSatisfactionLevel }) {
+function DisabledSatisfactionLevel({ value }) {
   return (
     <div className="form-item">
       <h3>Level of satisfaction today</h3>
-      <Dropdown
-        value={satisfactionLevel}
-        setValue={setSatisfactionLevel}
+      <DisabledDropdown
+        value={value}
         options={[
           "Very unsatisfied",
           "Unsatisfied",
@@ -22,4 +21,4 @@ function SatisfactionLevel({ satisfactionLevel, setSatisfactionLevel }) {
   );
 }
 
-export default SatisfactionLevel;
+export default DisabledSatisfactionLevel;

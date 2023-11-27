@@ -9,3 +9,15 @@ export async function getUser() {
   }
   return data;
 }
+
+export async function updateUser(updateData, userId) {
+  const { error } = await supabase
+    .from("users")
+    .update(updateData)
+    .eq("id", userId);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Error updating user data");
+  }
+}
