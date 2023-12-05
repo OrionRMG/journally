@@ -18,6 +18,7 @@ export function UserContextProvider({ children }) {
 
   if (!isLoading) {
     encryptEntries = encryptData?.userData?.entries;
+    console.log(encryptData?.userData);
     if (encryptEntries) {
       decryptEntries = decrypt(encryptEntries);
       entries = JSON.parse(decryptEntries);

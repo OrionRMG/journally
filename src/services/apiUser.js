@@ -7,7 +7,7 @@ export async function createUser(uid) {
 
   const { data, error } = await supabase
     .from("users")
-    .insert([{ user_id: uid, goals: [], entries: [], streak: 0, score: 0 }])
+    .insert([{ user_id: uid, goals: [], entries: "", streak: 0, score: 0 }])
     .select()
     .single();
 
