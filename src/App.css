@@ -71,7 +71,7 @@ h1 {
   display: flex;
   align-items: center;
   position: absolute;
-  top: 12px;
+  top: 48px;
   right: 0px;
   gap: 12px;
 }
@@ -470,6 +470,7 @@ p {
 footer {
   width: 100%;
   margin-top: 32px;
+  margin-bottom: 48px;
   color: var(--yellow-dark);
   text-align: center;
 }

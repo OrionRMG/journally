@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useUserContext } from "../UserContext";
 import Header from "./ui/Header";
 import Footer from "./ui/Footer";
+import User from "./User";
 
 function AppLayout() {
   const { data } = useUserContext();
