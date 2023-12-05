@@ -2,7 +2,7 @@ import { useUserContext } from "../../UserContext";
 import GoalProgressItem from "../goals/GoalProgressItem";
 
 function GoalsProgress({ setGoalsProgress }) {
-  const { data, currDayEntry } = useUserContext();
+  const { data, currDayEntry, isMobile } = useUserContext();
   const { userData } = data;
 
   return (
@@ -18,7 +18,11 @@ function GoalsProgress({ setGoalsProgress }) {
           />
         ))}
       </ul>
-      {!userData.goals.length && <p>Add some goals to the left!</p>}
+      {!userData.goals.length && (
+        <p>
+          {isMobile ? "Add some goals above!" : "Add some goals to the left!"}
+        </p>
+      )}
     </div>
   );
 }
