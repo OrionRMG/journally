@@ -9,7 +9,7 @@ function Goals({ toggle }) {
   const [isAddingGoal, setIsAddingGoal] = useState(false);
   const [goalText, setGoalText] = useState("");
 
-  const { data, isLoading } = useUserContext();
+  const { data, isLoading, isMobile } = useUserContext();
   const { userData } = data;
   const userId = data.userData.id;
   const { updateUserData, isUpdating } = useUpdateUser();
@@ -41,9 +41,11 @@ function Goals({ toggle }) {
     <div className="goals-box">
       <div className="row">
         <h2>Goals</h2>
-        <div onClick={toggle} className="icon-black">
-          <img src="images/close_fullscreen.svg" alt="" />
-        </div>
+        {!isMobile && (
+          <div onClick={toggle} className="icon-black">
+            <img src="images/close_fullscreen.svg" alt="" />
+          </div>
+        )}
       </div>
 
       <div className="goals-list">

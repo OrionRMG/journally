@@ -10,9 +10,11 @@ import PastEntry from "./entries/PastEntry";
 import StreakBanner from "./StreakBanner";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 import User from "./User";
+import Goals from "./goals/Goals";
+import PastEntries from "./entries/PastEntries";
 
 function Body() {
-  const { data, currDayId } = useUserContext();
+  const { data, currDayId, isMobile } = useUserContext();
   const { userData, sessionData } = data;
   const { streak, entries } = userData;
   const { updateUserData } = useUpdateUser();
@@ -40,6 +42,11 @@ function Body() {
   return (
     <>
       <User name={sessionData.user_metadata.name} />
+      {isMobile && (
+        <Box>
+          <Goals toggle={() => {}} />
+        </Box>
+      )}
       <Box isStreak={streak > 1 ? true : false}>
         {streak > 1 && <StreakBanner streak={streak} />}
         {currEntryId ? (
@@ -48,7 +55,12 @@ function Body() {
           <NewEntryForm />
         )}
       </Box>
-      <Sidebar setCurrEntryId={setCurrEntryId} />
+      {!isMobile && <Sidebar setCurrEntryId={setCurrEntryId} />}
+      {isMobile && (
+        <Box>
+          <PastEntries setCurrEntryId={setCurrEntryId} />
+        </Box>
+      )}
     </>
   );
 }

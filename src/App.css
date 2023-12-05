@@ -465,3 +465,26 @@ p {
 .coll-entries:hover {
   background-color: var(--blue-hover);
 }
+
+@media (max-width: 768px) {
+  body {
+    margin: 0px;
+  }
+
+  header {
+    padding-left: 24px;
+    margin-top: 24px;
+  }
+
+  .app-body {
+    width: auto;
+  }
+
+  .box {
+    margin-bottom: 16px;
+  }
+
+  .user-bar {
+    right: 24px;
+  }
+}

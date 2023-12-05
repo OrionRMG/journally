@@ -3,7 +3,7 @@ import ListItem from "../form/ListItem";
 import { useUserContext } from "../../UserContext";
 
 function PastEntries({ toggle, setCurrEntryId }) {
-  const { data } = useUserContext();
+  const { data, isMobile } = useUserContext();
   const { isLoading, userData } = data;
 
   function handleClick(id) {
@@ -14,9 +14,11 @@ function PastEntries({ toggle, setCurrEntryId }) {
     <div className="entries-box">
       <div className="row">
         <h2>Past Entries</h2>
-        <div onClick={toggle} className="icon-black">
-          <img src="images/close_fullscreen.svg" alt="" />
-        </div>
+        {!isMobile && (
+          <div onClick={toggle} className="icon-black">
+            <img src="images/close_fullscreen.svg" alt="" />
+          </div>
+        )}
       </div>
       <div className="entries-list">
         {userData.entries

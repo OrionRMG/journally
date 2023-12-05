@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import { useUser } from "./hooks/useUser";
 import { decrypt } from "./Utility";
@@ -15,6 +15,20 @@ export function UserContextProvider({ children }) {
   let decryptEntries = "";
   let entries = {};
   let data = { ...encryptData };
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
 
   if (!isLoading) {
     encryptEntries = encryptData?.userData?.entries;
@@ -92,7 +106,14 @@ export function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ data, currDayEntry, currDayId, isAuthenticated, isLoading }}
+      value={{
+        data,
+        currDayEntry,
+        currDayId,
+        isAuthenticated,
+        isLoading,
+        isMobile,
+      }}
     >
       {children}
     </UserContext.Provider>
