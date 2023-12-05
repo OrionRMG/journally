@@ -316,6 +316,7 @@ button {
   border: none;
   font-size: 16px;
   font-family: "Work Sans";
+  font-weight: 400;
 }
 
 .save-button-row {
@@ -466,14 +467,23 @@ p {
   background-color: var(--blue-hover);
 }
 
+footer {
+  width: 100%;
+  margin-top: 32px;
+  color: var(--yellow-dark);
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   body {
     margin: 0px;
   }
 
   header {
-    padding-left: 24px;
+    display: flex;
     margin-top: 24px;
+    margin-bottom: 48px;
+    justify-content: center;
   }
 
   .app-body {
