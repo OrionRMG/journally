@@ -5,7 +5,8 @@ import DisabledGoalsProgress from "../goals/DisabledGoalsProgress";
 import DisabledSatisfactionLevel from "../DisabledSatisfactionLevel";
 
 function PastEntry({ id, setCurrEntryId }) {
-  const { isLoading, userData } = useUserContext();
+  const { data } = useUserContext();
+  const { isLoading, userData } = data;
 
   let entry;
 
@@ -34,7 +35,7 @@ function PastEntry({ id, setCurrEntryId }) {
     <div className="new-entry-form">
       <div className="row">
         <h2>{entry.date}</h2>
-        <div onClick={close}>
+        <div className="icon-black" onClick={close}>
           <img src="images/close.svg" alt="" />
         </div>
       </div>

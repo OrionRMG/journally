@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useOutsideClick from "../hooks/useOutsideClick";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 function Dropdown({ value, setValue, options, colors, icon, size }) {
   const [showDropdown, setShowDropdown] = useState(false);

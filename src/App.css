@@ -7,12 +7,17 @@
   --blue-hover: #bbe1ee;
   --gray-dark: #383838;
   --gray-light: #ececec;
+  --gray-hover: #d6d6d6;
   --green-dark: #3c833b;
   --green-light: #e5f3d9;
+  --green-hover: #d7ebc6;
+  --green-hover-2: #bbdb9e;
   --red-dark: #a53d12;
   --red-light: #fdd2c0;
+  --red-hover: #f0bfaa;
   --yellow-dark: #b05b1d;
   --yellow-light: #f9efcb;
+  --yellow-hover: #eee0ae;
 }
 
 body {
@@ -44,11 +49,43 @@ h1 {
   position: relative;
 }
 
+.logout-button {
+  padding: 4px;
+  font-size: 14px;
+}
+
+.streak-banner {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  padding: 8px 0px;
+  background-color: var(--yellow-light);
+  color: var(--yellow-dark);
+}
+
+.user-bar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 12px;
+  right: 0px;
+  gap: 12px;
+}
+
+.login-button {
+  padding: 16px;
+}
+
 .box {
   display: flex;
   padding: 24px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
@@ -57,6 +94,10 @@ h1 {
   background: #fff;
 
   box-shadow: 0px 10px 30px -12px rgba(176, 91, 29, 0.5);
+}
+
+.center {
+  align-items: center;
 }
 
 .new-entry-form {
@@ -188,9 +229,23 @@ option {
   color: var(--red-dark);
 }
 
+.red:hover {
+  background-color: var(--red-hover);
+  border: 1px solid var(--red-dark);
+  margin: -1px;
+  z-index: 2;
+}
+
 .yellow {
   background-color: var(--yellow-light);
   color: var(--yellow-dark);
+}
+
+.yellow:hover {
+  background-color: var(--yellow-hover);
+  border: 1px solid var(--yellow-dark);
+  margin: -1px;
+  z-index: 2;
 }
 
 .gray {
@@ -198,9 +253,23 @@ option {
   color: var(--gray-dark);
 }
 
+.gray:hover {
+  background-color: var(--gray-hover);
+  border: 1px solid var(--gray-dark);
+  margin: -1px;
+  z-index: 2;
+}
+
 .green {
   background-color: var(--green-light);
   color: var(--green-dark);
+}
+
+.green:hover {
+  background-color: var(--green-hover);
+  border: 1px solid var(--green-dark);
+  margin: -1px;
+  z-index: 2;
 }
 
 .blue {
@@ -212,6 +281,27 @@ option {
   background-color: var(--blue-hover);
   border: 1px solid var(--blue-dark);
   margin: -1px;
+  z-index: 2;
+}
+
+.icon-black {
+  display: flex;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.icon-black:hover {
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-light);
+}
+
+.icon-green {
+  display: flex;
+}
+
+.icon-green:hover {
+  background-color: var(--green-hover-2);
 }
 
 .description-box {
@@ -228,11 +318,23 @@ button {
   font-family: "Work Sans";
 }
 
+.save-button-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--gray-dark);
+}
+
 .save-button {
   display: flex;
   padding: 12px 16px;
   align-items: flex-start;
   gap: 8px;
+  cursor: pointer;
+}
+
+.add-goal {
+  cursor: pointer;
 }
 
 .goals-box {
@@ -341,6 +443,7 @@ p {
   align-items: center;
   padding: 24px;
   box-shadow: 0px 10px 30px -12px rgba(176, 91, 29, 0.5);
+  cursor: pointer;
 }
 
 .coll-goals {
@@ -349,8 +452,16 @@ p {
   box-sizing: border-box;
 }
 
+.coll-goals:hover {
+  background-color: var(--green-hover);
+}
+
 .coll-entries {
   background-color: var(--blue-light);
   border: 1px solid var(--blue-dark);
   box-sizing: border-box;
+}
+
+.coll-entries:hover {
+  background-color: var(--blue-hover);
 }

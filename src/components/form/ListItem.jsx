@@ -1,7 +1,7 @@
-function ListItem({ type, children, isEntry = false, onClick }) {
+function ListItem({ type, children, isEntry = false, onClick, className }) {
   return (
     <div
-      className={`list-item ${type} ${isEntry ? "entry" : ""}`}
+      className={`list-item ${type} ${isEntry ? "entry" : ""} ${className}`}
       onClick={onClick}
     >
       {children}

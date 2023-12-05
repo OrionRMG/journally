@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Dropdown from "../ui/Dropdown";
 
-function GoalProgressItem({ goal, setGoalsProgress }) {
-  const [progress, setProgress] = useState(0);
+function GoalProgressItem({ goal, setGoalsProgress, value = 0 }) {
+  const [progress, setProgress] = useState(value);
 
   useEffect(() => {
     const goalProgress = {

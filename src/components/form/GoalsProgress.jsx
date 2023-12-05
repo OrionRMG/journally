@@ -2,30 +2,19 @@ import { useUserContext } from "../../UserContext";
 import GoalProgressItem from "../goals/GoalProgressItem";
 
 function GoalsProgress({ setGoalsProgress }) {
-  const { isLoading, userData } = useUserContext();
+  const { data, currDayEntry } = useUserContext();
+  const { userData } = data;
 
-  return isLoading ? (
-    <Oval
-      height={80}
-      width={80}
-      color="#b05b1d"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-      ariaLabel="oval-loading"
-      secondaryColor="#f9efcb"
-      strokeWidth={2}
-      strokeWidthSecondary={2}
-    />
-  ) : (
+  return (
     <div className="form-item">
       <h3>Progress toward your goals</h3>
       <ul className="goals-progress-list">
-        {userData.goals.map((goal) => (
+        {userData.goals.map((goal, index) => (
           <GoalProgressItem
             goal={goal}
             key={goal}
             setGoalsProgress={setGoalsProgress}
+            value={currDayEntry?.goals[index]?.progress}
           />
         ))}
       </ul>

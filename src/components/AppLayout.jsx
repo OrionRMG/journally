@@ -1,0 +1,16 @@
+import { Outlet, useNavigate } from "react-router-dom";
+import { useUserContext } from "../UserContext";
+import Header from "./ui/Header";
+
+function AppLayout() {
+  const { data } = useUserContext();
+
+  return (
+    <div className="app-body">
+      <Header name={data?.sessionData?.user_metadata.name} />
+      <Outlet />
+    </div>
+  );
+}
+
+export default AppLayout;

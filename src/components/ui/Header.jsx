@@ -1,10 +1,9 @@
 import User from "../User";
 
-function Header() {
+function Header({ name }) {
   return (
     <header>
-      <h1>Journal.io</h1>
-      <User />
+      <h1>Journally</h1>
     </header>
   );
 }
